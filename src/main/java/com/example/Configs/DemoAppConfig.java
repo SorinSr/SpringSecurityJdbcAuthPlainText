@@ -38,15 +38,15 @@ public class DemoAppConfig {
 
         logger.info(">>>>>> jdbc.url="+environment.getProperty("jdbc.driver"));
         logger.info(">>>>>> jdbc.user="+environment.getProperty("jdbc.user"));
+        logger.info(">>>>>> jdbc.user="+environment.getProperty("jdbc.password"));
 
         comboPooledSecurityDataSource.setJdbcUrl(environment.getProperty("jdbc.url"));
         comboPooledSecurityDataSource.setUser(environment.getProperty("jdbc.user"));
-        comboPooledSecurityDataSource.setPassword(environment.getProperty("jdbc.password"));
 
-        comboPooledSecurityDataSource.setInitialPoolSize(Integer.parseInt(environment.getProperty("connection.pool.initialPoolSize")));
-        comboPooledSecurityDataSource.setMinPoolSize(Integer.parseInt(environment.getProperty("connection.pool.minPoolSize")));
-        comboPooledSecurityDataSource.setMaxPoolSize(Integer.parseInt(environment.getProperty("connection.pool.maxPoolSize")));
-        comboPooledSecurityDataSource.setMaxIdleTime(Integer.parseInt(environment.getProperty("connection.pool.maxIdleTime")));
+        comboPooledSecurityDataSource.setInitialPoolSize(helperMethodConversionStringToInteger("connection.pool.initialPoolSize"));
+        comboPooledSecurityDataSource.setMinPoolSize(helperMethodConversionStringToInteger("connection.pool.minPoolSize"));
+        comboPooledSecurityDataSource.setMaxPoolSize(helperMethodConversionStringToInteger("connection.pool.maxPoolSize"));
+        comboPooledSecurityDataSource.setMaxIdleTime(helperMethodConversionStringToInteger("connection.pool.maxIdleTime"));
         return comboPooledSecurityDataSource;
     }
 
@@ -58,21 +58,13 @@ public class DemoAppConfig {
         return internalResourceViewResolver;
     }
 
-//
-//        comboPooledSecurityDataSource.setInitialPoolSize(helperMethodConversionStringToInteger("connection.pool.initialPoolSize"));
-//        comboPooledSecurityDataSource.setMinPoolSize(helperMethodConversionStringToInteger("connection.pool.minPoolSize"));
-//        comboPooledSecurityDataSource.setMaxPoolSize(helperMethodConversionStringToInteger("connection.pool.maxPoolSize"));
-//        comboPooledSecurityDataSource.setMaxIdleTime(helperMethodConversionStringToInteger("connection.pool.maxIdleTime"));
-//
-//    private Integer helperMethodConversionStringToInteger(String string) {
-//
-//        String propertyValue = environment.getProperty(string);
-//
-//        if (propertyValue != null) {
-//            return Integer.parseInt(propertyValue);
-//        }else {
-//            throw new RuntimeException("Value not defined.");
-//        }
-//
 
+    private Integer helperMethodConversionStringToInteger(String string) {
+        String propertyValue = environment.getProperty(string);
+        if (propertyValue != null) {
+            return Integer.parseInt(propertyValue);
+        } else {
+            throw new RuntimeException("Value not defined.");
+        }
+    }
 }
