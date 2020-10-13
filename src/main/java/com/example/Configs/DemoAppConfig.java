@@ -38,7 +38,6 @@ public class DemoAppConfig {
 
         logger.info(">>>>>> jdbc.url="+environment.getProperty("jdbc.driver"));
         logger.info(">>>>>> jdbc.user="+environment.getProperty("jdbc.user"));
-        logger.info(">>>>>> jdbc.user="+environment.getProperty("jdbc.password"));
 
         comboPooledSecurityDataSource.setJdbcUrl(environment.getProperty("jdbc.url"));
         comboPooledSecurityDataSource.setUser(environment.getProperty("jdbc.user"));
