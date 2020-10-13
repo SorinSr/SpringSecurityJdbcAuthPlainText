@@ -42,6 +42,7 @@ public class DemoAppConfig {
 
         comboPooledSecurityDataSource.setJdbcUrl(environment.getProperty("jdbc.url"));
         comboPooledSecurityDataSource.setUser(environment.getProperty("jdbc.user"));
+        comboPooledSecurityDataSource.setPassword(environment.getProperty("jdbc.password"));
 
         comboPooledSecurityDataSource.setInitialPoolSize(helperMethodConversionStringToInteger("connection.pool.initialPoolSize"));
         comboPooledSecurityDataSource.setMinPoolSize(helperMethodConversionStringToInteger("connection.pool.minPoolSize"));
